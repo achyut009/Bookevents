@@ -14,31 +14,31 @@ pipeline {
         }
         stage('Clean') {
             steps {
-                bat 'mvn -f Book-Reading-Event-master/Book-Reading-Event-main clean'
+                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main clean'
                 echo 'Cleaning..'
             }
         }
         stage('Compile') {
             steps {
-                bat 'mvn -f Book-Reading-Event-master/Book-Reading-Event-main compile'
+                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main compile'
                 echo 'Compiling..'
             }
         }
         stage('Test') {
             steps {
-                bat 'mvn -f  Book-Reading-Event-master/Book-Reading-Event-main test'
+                bat 'mvn -f  Book-Reading-Event-main/Book-Reading-Event-main test'
                 echo 'Testing..'
             }
         }
         stage('Packaging') {
             steps {
-                bat 'mvn -f Book-Reading-Event-master/Book-Reading-Event-main package'
+                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main package'
                 echo 'Packageing..'
             }
         }
         stage('Install') {
             steps {
-                bat 'mvn -f Book-Reading-Event-master/Book-Reading-Event-main install'
+                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main install'
                 echo 'Installing..'
             }
         }
