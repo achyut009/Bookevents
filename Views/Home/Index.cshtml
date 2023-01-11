@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{
+        var datum = ViewData["data"] as IEnumerable<EventModel>;
+
+
+
+}
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<UserModel> _signedin
+
+@model EventModel
+
+
+
+
+
+
+<section class=" jumbotron bg-light text-center">
+    <div class="container">
+        <h1 class="display-4">Welcome To Books Events</h1>
+
+        <p class="lead text-muted">Lorem ipsum dheujd uejfidjrifbr jdefinkjbcjr vfjrfcjr fhfcjedie jjc</p>
+    </div>
+</section>
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+
+
+        <h3 class="text-center py-2">Book Events</h3>
+        <div class="row">
+            <table class="table table-hover table-dark">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                Past Events
+                            </th>
+                            <th>
+                                Upcoming Events
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            @if (_signedin.IsSignedIn(User))
+                            {
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if ((item.Date < DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay < DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a asp-controller="Event" asp-action="GetAEvent" asp-route-id="@item.Id" class="text-secondary"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if ((item.Date > DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay > DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a asp-controller="Event" asp-action="GetAEvent" asp-route-id="@item.Id" class="text-secondary"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if ((item.Date > DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay > DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a class="text-secondary"> @Html.DisplayFor(modelItem => item.Type)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                              
+                            }
+                            else
+                            {
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if ((item.Type == "public" && item.Date < DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay < DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a asp-controller="Event" asp-action="GetAEvent" asp-route-id="@item.Id" class="text-secondary"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if (item.Type == "public" && (item.Date > DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay > DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a asp-controller="Event" asp-action="GetAEvent" asp-route-id="@item.Id" class="text-secondary"> @Html.DisplayFor(modelItem => item.Name)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        @foreach (var item in datum)
+                                        {
+                                            @if (item.Type == "public" && (item.Date > DateTime.Now.Date) || ((item.Date == DateTime.Now.Date) && (item.Date.TimeOfDay > DateTime.Now.TimeOfDay)))
+                                            {
+                                                <li class="list-unstyled"><a  asp-route-id="@item.Id" class="text-secondary"> @Html.DisplayFor(modelItem => item.Type)</a></li>
+                                            }}
+                                    </ul>
+                                </td>
+                            }
+                    </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

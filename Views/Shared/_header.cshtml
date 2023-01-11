@@ -1,0 +1,48 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<UserModel> _signedin
+
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Books Event</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="helpdesk.nagarro.com ">Customer Support</a>
+                    </li>
+                    @if (_signedin.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Createevent">Create New Event</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area=" " asp-controller="Event" asp-action="GetMyEvents">Get My Events</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area=" " asp-controller="Event" asp-action="InvitedTo">Invited To</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area=" " asp-controller="Event" asp-action="GetAllEvents">Edit Events</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <span class="ml-auto">
+                <partial name="_login" />
+            </span>
+
+        </div>
+    </nav>
+</header>

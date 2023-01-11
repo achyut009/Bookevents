@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@inject Microsoft.AspNetCore.Identity.SignInManager<UserModel> _signedin
+
+@model EventModel
+
+@{
+    var datum = ViewData["data"] as IEnumerable<EventModel>;
+
+}
+
+<div class="container">
+    <h3 class="text-center">Events Invited to</h3>
+    <div class="row">
+        <table class="table table-hover table-dark">
+
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Event Name</th>
+                <th scope="col">Type</th>
+
+            </tr>
+            <tbody>
+                @foreach (var data in datum)
+                {
+
+                    <tr>
+                        <th scope="row">@data.Id</th>
+                        <td><a asp-area=" " asp-controller="Event" asp-action="GetAEvent" asp-route-Id="@data.Id" class="text-secondary">@data.Name</a></td>
+                        <td>@data.Type</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+        

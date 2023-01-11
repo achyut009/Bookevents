@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Create New Event";
+}
+@{
+    ViewData["Title"] = "New Book";
+}
+
+@model EventModel;
+
+<div class="container">
+    <h3 class="my-5">Add new Event</h3>
+    <div class="col">
+        <form enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input asp-for="Name" class="form-control">
+                <span class="text-right my-3 text-danger" asp-validation-for="Name"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date</label>
+                <input asp-for="Date" class="form-control" id="exampleInputPassword1">
+                <span class="text-right my-3 text-danger" asp-validation-for="Date"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <br />
+                <input class="form-control" asp-for="Location">
+                <span class="text-right my-3 text-danger" asp-validation-for="Location"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Type can be private or public</label>
+                <br />
+                <select  class="form-control" asp-for="Type">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select>
+                <span class="text-right my-3 text-danger" asp-validation-for="Type"></span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Time</label>
+                <br />
+                <input class="form-control" asp-for="Time">
+                <span class="text-right my-3 text-danger" asp-validation-for="Time"></span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Duration</label>
+                <br />
+                <input  class="form-control" asp-for="Duration">
+                <span class="text-right my-3 text-danger" asp-validation-for="Duration"></span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Description</label>
+                <br />
+                <input  class="form-control" asp-for="Description">
+                <span class="text-right my-3 text-danger" asp-validation-for="Description"></span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Other Detail</label>
+                <br />
+                <input  class="form-control" asp-for="OtherDetail">
+                <span class="text-right my-3 text-danger" asp-validation-for="OtherDetail"></span>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Invited By</label>
+                <br />
+                <input  class="form-control" asp-for="InvitedBy">
+                <span class="text-right my-3 text-danger" asp-validation-for="InvitedBy"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Event</button>
+        </form>
+    </div>
+</div>

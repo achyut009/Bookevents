@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ConfirmEmail</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                @if (ViewBag.value == true)
+                {
+                    <div class="alert alert-success" role="alert">
+                        <p>Your email is verified successfully.</p>
+                    </div>
+            }
+            else
+            {
+                <p>Somthing Went Wrong</p>
+            }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

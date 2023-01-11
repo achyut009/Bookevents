@@ -1,0 +1,44 @@
+﻿@model EventModel
+
+<div class="py-5 bg-light">
+    <div class="container">
+
+
+
+        <h3 class="text-center py-2">My Events</h3>
+        <div class="row">
+            <table class="table table-hover table-dark">
+
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Other Details</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Invited By</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Edit</th>
+
+                </tr>
+
+                <tbody>
+                    <tr>
+                        @foreach (var data in (IEnumerable<EventModel>)ViewData["data"])
+                        {
+                    <tr>
+                        <th scope="row">@data.Id</th>
+                        <td>@data.Name</td>
+                        <td>@data.OtherDetail</td>
+                        <td>@data.Location</td>
+                        <td>@data.Time</td>
+                        <td>@data.InvitedBy</td>
+                        <td>@data.Type</td>
+                        <td><a asp-controller="Event" asp-action="Edit" asp-route-Id="@data.Id" class="btn btn-outline-secondary">Edit</a></td>
+                    </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
