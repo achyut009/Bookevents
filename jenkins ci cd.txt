@@ -1,49 +1,27 @@
 pipeline {
     agent any
-    
-     tools{maven "MAVEN_HOME"}
-
     stages {
-	
-		stage("Checkout code"){
-			steps
-			{
-				checkout([$class: 'GitSCM', branches: [[name: '*/mvc']], extensions: [], userRemoteConfigs: [[credentialsId: 'glpat-ohuVbNJVH2yPQvskRnNC', url: 'https://github.com/achyut009/Bookevents.git']]])
-				echo 'Check Out'
-			}
-        }
-        stage('Clean') {
+        stage('git repo & clean') {
             steps {
-                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main clean'
-                echo 'Cleaning..'
+               // bat "rmdir  /s /q Bookevents"
+                bat "git clone https://github.com/achyut009/Bookevents.git"
+                bat "mvn clean -f Bookevents"
             }
         }
-        stage('Compile') {
+        stage('install') {
             steps {
-                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main compile'
-                echo 'Compiling..'
+                bat "mvn install -f Bookevents"
             }
         }
-        stage('Test') {
+        stage('test') {
             steps {
-                bat 'mvn -f  Book-Reading-Event-main/Book-Reading-Event-main test'
-                echo 'Testing..'
+                bat "mvn test -f Bookevents"
             }
         }
-        stage('Packaging') {
+        stage('package') {
             steps {
-                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main package'
-                echo 'Packageing..'
+                bat "mvn package -f Bookevents"
             }
         }
-        stage('Install') {
-            steps {
-                bat 'mvn -f Book-Reading-Event-main/Book-Reading-Event-main install'
-                echo 'Installing..'
-            }
-        }
-        
-      
     }
 }
-
